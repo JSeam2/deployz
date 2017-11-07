@@ -40,12 +40,14 @@ phases:
       - cd $CODEBUILD_SRC_DIR
       - echo Build started on `date` in dir `pwd`
       - mix deps.get
+      - mix test
       - mix release --env=prod
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
 artifacts:
+  base-directory: _build/prod/rel/deployz/releases
   files:
-    - _build/prod/rel/deployz/releases/0.0.1/deployz.tar.gz
+    - 0.0.1/deployz.tar.gz
   discard-paths: yes
