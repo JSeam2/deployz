@@ -47,5 +47,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - deployz.tar.gz
+    - _build/prod/rel/deployz/releases/0.0.1/deployz.tar.gz
   discard-paths: yes
