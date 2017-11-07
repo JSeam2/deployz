@@ -37,9 +37,11 @@ phases:
   build:
     commands:
       - echo Entered the build phase...
-      - echo Build started on `date` in dir `pwd`
       - cd
-      - echo WHERE `find . -name mix.exs -print`
+      - echo Build started on `date` in dir `pwd`
+      - echo WHERE
+      - echo $CODEBUILD_SRC_DIR
+      - echo WHERE
       - mix deps.get
       - mix release --env=prod
   post_build:
