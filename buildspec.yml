@@ -38,6 +38,9 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
+      - cd
+      - mix deps.get
+      - mix release --env=prod
   post_build:
     commands:
       - echo Entered the post_build phase...
