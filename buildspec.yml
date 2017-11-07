@@ -37,8 +37,8 @@ phases:
   build:
     commands:
       - echo Entered the build phase...
-      - echo Build started on `date`
-      - cd
+      - echo Build started on `date` in dir `pwd`
+      - echo WHERE `find . -name mix.exs -print`
       - mix deps.get
       - mix release --env=prod
   post_build:
