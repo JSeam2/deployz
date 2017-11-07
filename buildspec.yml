@@ -24,9 +24,9 @@ phases:
     commands:
       - echo Entered the pre_build phase...
       - echo ELIXIR
-      - mkdir /usr/local/src && cd /usr/local/src
+      - cd /usr/local/src
       - git clone https://github.com/elixir-lang/elixir.git
-      - cd /usr/local/src/elixir
+      - cd elixir
       - git checkout refs/tags/v${ELIXIR_VERSION}
       - make clean install
       - echo NPM
