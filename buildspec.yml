@@ -1,0 +1,48 @@
+version: 0.2
+
+env:
+  variables:
+    LANG: "en_US.UTF-8"
+    LANGUAGE: "en_US:en"
+    LC_ALL: "en_US.UTF-8"
+    HOME: "/root"
+    ELIXIR_VERSION: "1.5.2"
+    MIX_ENV: "prod"
+  parameter-store:
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - yum update -y && yum clean all
+      - yum reinstall -y glibc-common
+      - yum install -y gcc gcc-c++ make openssl-devel ncurses-devel wget && yum clean all
+      - yum install -y epel-release.noarch && yum clean all
+      - wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
+      - rpm -Uvh erlang-solutions-1.0-1.noarch.rpm
+      - yum install -y esl-erlang sudo wget git tar bzip2 incron vim && yum clean all
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - echo ELIXIR
+      - git clone https://github.com/elixir-lang/elixir.git
+      - cd /usr/local/src/elixir
+      - git checkout refs/tags/v${ELIXIR_VERSION}
+      - make clean install
+      - echo NPM
+      - curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+      - yum install -y nodejs && yum clean all
+      - echo HEX
+      - /usr/local/bin/mix local.hex --force && /usr/local/bin/mix local.rebar --force && /usr/local/bin/mix hex.info
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - deployz.tar.gz
+  discard-paths: yes
