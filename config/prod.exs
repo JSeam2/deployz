@@ -62,10 +62,13 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 # import_config "prod.secret.exs"
+config :deployz, DeployzWeb.Endpoint,
+  secret_key_base: "${BANZAI_SECRET_KEY_BASE}"
+
 config :deployz, Deployz.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "deployz_prod",
-  hostname: "localhost",
+  username: "${BANZAI_DB_USER}",
+  password: "${BANZAI_DB_PASS}",
+  database: "${BANZAI_DB_NAME}",
+  hostname: "${BANZAI_DB_HOST}",
   pool_size: 10

@@ -13,6 +13,7 @@ env:
     SSL_CERT_KEY: "/etc/nginx/ssl/domain.key"
     SSL_CERT_PATH: "/etc/nginx/ssl/domain.crt"
   parameter-store:
+    BANZAI_SECRET_KEY_BASE: "BANZAI_SECRET_KEY_BASE"
     BANZAI_DB_USER: "BANZAI_DB_USER"
     BANZAI_DB_PASS: "BANZAI_DB_PASS"
     BANZAI_DB_NAME: "BANZAI_DB_NAME"
