@@ -8,6 +8,15 @@ env:
     HOME: "/root"
     ELIXIR_VERSION: "1.5.2"
     MIX_ENV: "prod"
+    REPLACE_OS_VARS: true
+    PORT: 8443
+    SSL_CERT_KEY: "/etc/nginx/ssl/domain.key"
+    SSL_CERT_PATH: "/etc/nginx/ssl/domain.crt"
+  parameter-store:
+    BANZAI_DB_USER: "BANZAI_DB_USER"
+    BANZAI_DB_PASS: "BANZAI_DB_PASS"
+    BANZAI_DB_NAME: "BANZAI_DB_NAME"
+    BANZAI_DB_HOST: "BANZAI_DB_HOST"
 
 phases:
   install:
